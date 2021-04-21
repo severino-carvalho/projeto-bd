@@ -417,6 +417,114 @@ public class Biblioteca extends javax.swing.JFrame {
         }
     }
 
+    private void tituloLivros(String titulo) {
+        formatarTabela();
+
+        try {
+            Connection conn = Conexao.getConnection();
+            String command = "SELECT * FROM LIVRO "
+                    + " WHERE TITULO LIKE ?";
+
+            PreparedStatement ps = conn.prepareStatement(command);
+            ps.setString(1, "%" + titulo + "%");
+
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel dtm = (DefaultTableModel) tblLivros.getModel();
+
+            while (rs.next()) {
+                String[] linhaLivro = new String[]{
+                    rs.getString("COD_UNICO"),
+                    rs.getString("TITULO"),
+                    rs.getString("EDITORA"),
+                    rs.getString("CATEGORIA")
+                };
+                dtm.addRow(linhaLivro);
+            }
+
+            formatarCampos();
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    private void editoraLivros(String categora) {
+        formatarTabela();
+
+        try {
+            Connection conn = Conexao.getConnection();
+            String command = "SELECT * FROM LIVRO "
+                    + " WHERE CATEGORIA = ?";
+
+            PreparedStatement ps = conn.prepareStatement(command);
+            ps.setString(1, categora);
+
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel dtm = (DefaultTableModel) tblLivros.getModel();
+
+            while (rs.next()) {
+                String[] linhaLivro = new String[]{
+                    rs.getString("COD_UNICO"),
+                    rs.getString("TITULO"),
+                    rs.getString("EDITORA"),
+                    rs.getString("CATEGORIA")
+                };
+                dtm.addRow(linhaLivro);
+            }
+
+            formatarCampos();
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    private void categoriaLivros(String categora) {
+        formatarTabela();
+
+        try {
+            Connection conn = Conexao.getConnection();
+            String command = "SELECT * FROM LIVRO "
+                    + " WHERE CATEGORIA = ?";
+
+            PreparedStatement ps = conn.prepareStatement(command);
+            ps.setString(1, categora);
+
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel dtm = (DefaultTableModel) tblLivros.getModel();
+
+            while (rs.next()) {
+                String[] linhaLivro = new String[]{
+                    rs.getString("COD_UNICO"),
+                    rs.getString("TITULO"),
+                    rs.getString("EDITORA"),
+                    rs.getString("CATEGORIA")
+                };
+                dtm.addRow(linhaLivro);
+            }
+
+            formatarCampos();
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
