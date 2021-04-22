@@ -9,6 +9,7 @@ import br.ifrn.edu.conexao.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -29,7 +30,7 @@ public class Login extends javax.swing.JFrame {
         initLookAndFeel();
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -209,9 +210,14 @@ public class Login extends javax.swing.JFrame {
                 while (rs.next()) {
                     if (rs.getString("EMAIL_CAD").equals(email)
                             && rs.getString("SENHA_CAD").equals(senha)) {
+                        
+                        String cpfR = rs.getString("CPF_CAD");
+                        String emailR = rs.getString("EMAIL_CAD");
+                        String senhaR = rs.getString("SENHA_CAD");
+                        
                         java.awt.EventQueue.invokeLater(new Runnable() {
                             public void run() {
-                                new Biblioteca().setVisible(true);
+                                new Biblioteca(cpfR, emailR, senhaR).setVisible(true);
                             }
                         });
                         this.setVisible(false);
@@ -221,6 +227,7 @@ public class Login extends javax.swing.JFrame {
                                 "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 }
+
                 rs.close();
                 ps.close();
                 conn.close();

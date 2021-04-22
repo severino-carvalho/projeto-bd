@@ -26,11 +26,15 @@ public class Biblioteca extends javax.swing.JFrame {
 
     /**
      * Creates new form Biblioteca
+     * @param cpf
+     * @param email
+     * @param senha
      */
-    public Biblioteca() {
+    public Biblioteca(String cpf, String email, String senha) {
         initComponents();
         iniciar();
-    }
+        System.out.println(cpf+ " "+ email + " " + senha);
+      }
 
     private void iniciar() {
         todosLivros();
@@ -75,7 +79,13 @@ public class Biblioteca extends javax.swing.JFrame {
         btnBusca = new javax.swing.JButton();
         txtValor = new javax.swing.JTextField();
         lblValor = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        painelEmprestimo = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        btnNovoEmp = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        lblQtdEmp = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -112,6 +122,7 @@ public class Biblioteca extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 398, 867, 225));
 
         painelBusca.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        painelBusca.setPreferredSize(null);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -149,7 +160,7 @@ public class Biblioteca extends javax.swing.JFrame {
         painelBuscaLayout.setHorizontalGroup(
             painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelBuscaLayout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,22 +207,92 @@ public class Biblioteca extends javax.swing.JFrame {
                 .addGap(29, 29, 29))
         );
 
-        jPanel1.add(painelBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, -1, -1));
+        jPanel1.add(painelBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 400, -1));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        painelEmprestimo.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        painelEmprestimo.setPreferredSize(new java.awt.Dimension(400, 285));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 418, Short.MAX_VALUE)
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Emprestimos");
+
+        btnNovoEmp.setText("Novo Emprestimo");
+        btnNovoEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoEmpActionPerformed(evt);
+            }
+        });
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Em emprestimo:");
+
+        lblQtdEmp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblQtdEmp.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lblQtdEmp.setPreferredSize(new java.awt.Dimension(50, 26));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblQtdEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 281, Short.MAX_VALUE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblQtdEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 12, -1, -1));
+        jButton1.setText("Devolver");
+
+        javax.swing.GroupLayout painelEmprestimoLayout = new javax.swing.GroupLayout(painelEmprestimo);
+        painelEmprestimo.setLayout(painelEmprestimoLayout);
+        painelEmprestimoLayout.setHorizontalGroup(
+            painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelEmprestimoLayout.createSequentialGroup()
+                .addGroup(painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelEmprestimoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(painelEmprestimoLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(painelEmprestimoLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnNovoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+        painelEmprestimoLayout.setVerticalGroup(
+            painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelEmprestimoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNovoEmp)
+                    .addComponent(jButton1))
+                .addGap(29, 29, 29))
+        );
+
+        jPanel1.add(painelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 12, -1, 280));
 
         jMenu3.setText("Sistema");
 
@@ -299,7 +380,6 @@ public class Biblioteca extends javax.swing.JFrame {
         } else if (cbTipo.getSelectedIndex() == 3) {
             if (!txtValor.getText().trim().isEmpty()) {
                 String editora = txtValor.getText();
-
                 editoraLivros(editora);
             } else {
                 JOptionPane.showMessageDialog(null, "Campo código sem valor!", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -307,7 +387,6 @@ public class Biblioteca extends javax.swing.JFrame {
         } else if (cbTipo.getSelectedIndex() == 4) {
             if (cbCateg.getSelectedIndex() != 0) {
                 String categoria = cbCateg.getSelectedItem() + "";
-
                 categoriaLivros(categoria);
             } else {
                 todosLivros();
@@ -325,6 +404,10 @@ public class Biblioteca extends javax.swing.JFrame {
         });
         this.setVisible(false);
     }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void btnNovoEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoEmpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNovoEmpActionPerformed
 
     private void formatarTabela() {
         try {
@@ -378,8 +461,6 @@ public class Biblioteca extends javax.swing.JFrame {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
-    
 
     private void codLivros(int cod) {
         formatarTabela();
@@ -557,20 +638,26 @@ public class Biblioteca extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBusca;
+    private javax.swing.JButton btnNovoEmp;
     private javax.swing.JComboBox<String> cbCateg;
     private javax.swing.JComboBox<String> cbTipo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCateg;
+    private javax.swing.JLabel lblQtdEmp;
     private javax.swing.JLabel lblValor;
     private javax.swing.JPanel painelBusca;
+    private javax.swing.JPanel painelEmprestimo;
     private javax.swing.JTable tblLivros;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
