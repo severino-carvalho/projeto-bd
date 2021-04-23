@@ -24,20 +24,30 @@ import javax.swing.table.JTableHeader;
  */
 public class Biblioteca extends javax.swing.JFrame {
 
+    private final String cpf;
+    private final String email;
+    private final String senha;
+
     /**
      * Creates new form Biblioteca
+     *
      * @param cpf
      * @param email
      * @param senha
      */
     public Biblioteca(String cpf, String email, String senha) {
         initComponents();
+        this.cpf = cpf;
+        this.email = email;
+        this.senha = senha;
         iniciar();
-        System.out.println(cpf+ " "+ email + " " + senha);
-      }
+
+        txtCPF.setText(this.cpf);
+    }
 
     private void iniciar() {
         todosLivros();
+        livrosEmprestados();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         lblValor.setVisible(false);
         txtValor.setVisible(false);
@@ -53,9 +63,17 @@ public class Biblioteca extends javax.swing.JFrame {
         tblLivros.getColumnModel().getColumn(0).setCellRenderer(centerCol);
         tblLivros.getColumnModel().getColumn(3).setCellRenderer(centerCol);
 
+        tblLivrosEmpres.getColumnModel().getColumn(0).setCellRenderer(centerCol);
+        tblLivrosEmpres.getColumnModel().getColumn(1).setCellRenderer(centerCol);
+        tblLivrosEmpres.getColumnModel().getColumn(2).setCellRenderer(centerCol);
+
         JTableHeader header = tblLivros.getTableHeader();
         DefaultTableCellRenderer centerTitle = (DefaultTableCellRenderer) header.getDefaultRenderer();
         centerTitle.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JTableHeader headerEmp = tblLivrosEmpres.getTableHeader();
+        DefaultTableCellRenderer centerTitleEmp = (DefaultTableCellRenderer) headerEmp.getDefaultRenderer();
+        centerTitleEmp.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
     /**
@@ -84,8 +102,23 @@ public class Biblioteca extends javax.swing.JFrame {
         btnNovoEmp = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        lblQtdEmp = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblLivrosEmpres = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtCodLivro = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtDataDevo = new javax.swing.JFormattedTextField();
+        txtDataEmpre = new javax.swing.JFormattedTextField();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        txtCPF = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JPasswordField();
+        jLabel11 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -119,10 +152,9 @@ public class Biblioteca extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblLivros);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 398, 867, 225));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 1240, 225));
 
         painelBusca.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        painelBusca.setPreferredSize(null);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -160,30 +192,29 @@ public class Biblioteca extends javax.swing.JFrame {
         painelBuscaLayout.setHorizontalGroup(
             painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelBuscaLayout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(123, 123, 123))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
-                        .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelBuscaLayout.createSequentialGroup()
-                                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(lblValor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(painelBuscaLayout.createSequentialGroup()
-                                .addComponent(lblCateg, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbCateg, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(80, 80, 80))))
-            .addGroup(painelBuscaLayout.createSequentialGroup()
                 .addGap(132, 132, 132)
                 .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
+                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelBuscaLayout.createSequentialGroup()
+                        .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(lblValor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(painelBuscaLayout.createSequentialGroup()
+                        .addComponent(lblCateg, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbCateg, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(80, 80, 80))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         painelBuscaLayout.setVerticalGroup(
             painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,12 +256,20 @@ public class Biblioteca extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Em emprestimo:");
 
-        lblQtdEmp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblQtdEmp.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        lblQtdEmp.setPreferredSize(new java.awt.Dimension(50, 26));
+        tblLivrosEmpres.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Data Emprestimo", "Data Devolução"
+            }
+        ));
+        tblLivrosEmpres.setRowHeight(18);
+        jScrollPane2.setViewportView(tblLivrosEmpres);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -239,11 +278,9 @@ public class Biblioteca extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblQtdEmp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,11 +288,131 @@ public class Biblioteca extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblQtdEmp, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jButton1.setText("Devolver");
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Código Livro:");
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Data Emprestimo:");
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText("Data Devolução:");
+
+        txtCodLivro.setPreferredSize(new java.awt.Dimension(150, 26));
+
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Informações do Empréstimo:");
+
+        try {
+            txtDataDevo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            txtDataEmpre.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCodLivro, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                            .addComponent(txtDataDevo)
+                            .addComponent(txtDataEmpre))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodLivro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDataEmpre, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDataDevo, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel8.setText("CPF:");
+
+        txtCPF.setEditable(false);
+        txtCPF.setPreferredSize(new java.awt.Dimension(150, 26));
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText("Senha");
+
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Confirmar Indentidade:");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout painelEmprestimoLayout = new javax.swing.GroupLayout(painelEmprestimo);
         painelEmprestimo.setLayout(painelEmprestimoLayout);
@@ -263,36 +420,48 @@ public class Biblioteca extends javax.swing.JFrame {
             painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelEmprestimoLayout.createSequentialGroup()
                 .addGroup(painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelEmprestimoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(painelEmprestimoLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(20, 20, 20)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelEmprestimoLayout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelEmprestimoLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelEmprestimoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                        .addComponent(btnNovoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelEmprestimoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(painelEmprestimoLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnNovoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
         );
         painelEmprestimoLayout.setVerticalGroup(
             painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelEmprestimoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelEmprestimoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGroup(painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(painelEmprestimoLayout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNovoEmp)
                     .addComponent(jButton1))
-                .addGap(29, 29, 29))
+                .addContainerGap())
         );
 
-        jPanel1.add(painelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 12, -1, 280));
+        jPanel1.add(painelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 12, 790, 410));
 
         jMenu3.setText("Sistema");
 
@@ -316,15 +485,15 @@ public class Biblioteca extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(42, 42, 42)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -361,36 +530,43 @@ public class Biblioteca extends javax.swing.JFrame {
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
         // TODO add your handling code here:
-        if (cbTipo.getSelectedIndex() == 1) {
-            if (!txtValor.getText().trim().isEmpty()) {
-                int cod = Integer.parseInt(txtValor.getText());
+        switch (cbTipo.getSelectedIndex()) {
+            case 1:
+                if (!txtValor.getText().trim().isEmpty()) {
+                    int cod = Integer.parseInt(txtValor.getText());
 
-                codLivros(cod);
-            } else {
-                JOptionPane.showMessageDialog(null, "Campo código sem valor!", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (cbTipo.getSelectedIndex() == 2) {
-            if (!txtValor.getText().trim().isEmpty()) {
-                String titulo = txtValor.getText();
+                    codLivros(cod);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Campo código sem valor!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+            case 2:
+                if (!txtValor.getText().trim().isEmpty()) {
+                    String titulo = txtValor.getText();
 
-                tituloLivros(titulo);
-            } else {
-                JOptionPane.showMessageDialog(null, "Campo código sem valor!", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (cbTipo.getSelectedIndex() == 3) {
-            if (!txtValor.getText().trim().isEmpty()) {
-                String editora = txtValor.getText();
-                editoraLivros(editora);
-            } else {
-                JOptionPane.showMessageDialog(null, "Campo código sem valor!", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (cbTipo.getSelectedIndex() == 4) {
-            if (cbCateg.getSelectedIndex() != 0) {
-                String categoria = cbCateg.getSelectedItem() + "";
-                categoriaLivros(categoria);
-            } else {
-                todosLivros();
-            }
+                    tituloLivros(titulo);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Campo código sem valor!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+            case 3:
+                if (!txtValor.getText().trim().isEmpty()) {
+                    String editora = txtValor.getText();
+                    editoraLivros(editora);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Campo código sem valor!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
+            case 4:
+                if (cbCateg.getSelectedIndex() != 0) {
+                    String categoria = cbCateg.getSelectedItem() + "";
+                    categoriaLivros(categoria);
+                } else {
+                    todosLivros();
+                }
+                break;
+            default:
+                break;
         }
     }//GEN-LAST:event_btnBuscaActionPerformed
 
@@ -407,6 +583,22 @@ public class Biblioteca extends javax.swing.JFrame {
 
     private void btnNovoEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoEmpActionPerformed
         // TODO add your handling code here:
+        if (!(txtCPF.getText().trim().isEmpty()
+                || txtCodLivro.getText().trim().isEmpty()
+                || txtDataDevo.getText().contains("  ")
+                || txtDataEmpre.getText().contains("  ")
+                || txtSenha.getPassword().equals(""))) {
+
+            //String cpf, String email, String senha, int cod_unico,String dataEmprestimo, String dataDevolucao 
+            String cpfEmp = txtCPF.getText();
+            String emailEmp = this.email;
+            String senhaEmp = new String(txtSenha.getPassword());
+            int cod_uni_emp = Integer.parseInt(txtCodLivro.getText());
+            String dataEmp = txtDataEmpre.getText();
+            String dataDevEmp = txtDataEmpre.getText();
+
+            emprestar(cpfEmp, emailEmp, senhaEmp, cod_uni_emp, dataEmp, dataDevEmp);
+        }
     }//GEN-LAST:event_btnNovoEmpActionPerformed
 
     private void formatarTabela() {
@@ -421,12 +613,37 @@ public class Biblioteca extends javax.swing.JFrame {
         }
     }
 
-    private void formatarCampos() {
+    private void formatarCamposBusca() {
         try {
             txtValor.setText("");
             txtValor.grabFocus();
         } catch (Exception e) {
             System.out.println("ERRO:" + e.getMessage());
+        }
+    }
+
+    private void formatarCamposEmprestimo() {
+        try {
+            txtCodLivro.setText("");
+            txtCodLivro.grabFocus();
+            txtDataEmpre.setText("");
+            txtDataDevo.setText("");
+            txtSenha.setText("");
+            formatarTabelaEmp();
+        } catch (Exception e) {
+            System.out.println("ERRO:" + e.getMessage());
+        }
+    }
+
+    private void formatarTabelaEmp() {
+        try {
+            DefaultTableModel dtm = (DefaultTableModel) tblLivrosEmpres.getModel();
+
+            while (dtm.getRowCount() > 0) {
+                dtm.removeRow(0);
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
         }
     }
 
@@ -487,7 +704,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 dtm.addRow(linhaLivro);
             }
 
-            formatarCampos();
+            formatarCamposBusca();
 
             rs.close();
             ps.close();
@@ -523,7 +740,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 dtm.addRow(linhaLivro);
             }
 
-            formatarCampos();
+            formatarCamposBusca();
 
             rs.close();
             ps.close();
@@ -559,7 +776,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 dtm.addRow(linhaLivro);
             }
 
-            formatarCampos();
+            formatarCamposBusca();
 
             rs.close();
             ps.close();
@@ -595,7 +812,138 @@ public class Biblioteca extends javax.swing.JFrame {
                 dtm.addRow(linhaLivro);
             }
 
-            formatarCampos();
+            formatarCamposBusca();
+
+            rs.close();
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    private boolean verificaIndent(String cpf, String email, String senha) {
+        try {
+            Connection conn = Conexao.getConnection();
+
+            String comando = "SELECT * FROM LEITOR"
+                    + " WHERE CPF = ? AND EMAIL = ? AND SENHA = ?";
+
+            PreparedStatement ps = conn.prepareStatement(comando);
+            ps.setString(1, cpf);
+            ps.setString(2, email);
+            ps.setString(3, senha);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                ps.close();
+                conn.close();
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Indentidade inválida!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                ps.close();
+                conn.close();
+                return false;
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return false;
+    }
+
+    private boolean verificaLivro(int cod_unico) {
+        try {
+            Connection conn = Conexao.getConnection();
+
+            String comando = "SELECT * FROM LIVRO "
+                    + " WHERE COD_UNICO = ?";
+
+            PreparedStatement ps = conn.prepareStatement(comando);
+            ps.setInt(1, cod_unico);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                ps.close();
+                conn.close();
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Livro não encontrado", "EROR", JOptionPane.ERROR_MESSAGE);
+                ps.close();
+                conn.close();
+                return false;
+            }
+
+        } catch (Exception e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return false;
+    }
+
+    private void emprestar(String cpf, String email, String senha, int cod_unico,
+            String dataEmprestimo, String dataDevolucao) {
+        if (verificaIndent(cpf, email, senha) && verificaLivro(cod_unico)) {
+            try {
+                Connection conn = Conexao.getConnection();
+
+                String comando = "INSERT INTO EMPRESTIMO VALUES(?, ?, ?, ?)";
+
+                PreparedStatement ps = conn.prepareStatement(comando);
+                ps.setString(1, cpf);
+                ps.setInt(2, cod_unico);
+                ps.setString(3, dataEmprestimo);
+                ps.setString(4, dataDevolucao);
+
+                int result = ps.executeUpdate();
+
+                if (result > 0) {
+                    String msg = "Livro emprestado com sucesso!";
+                    JOptionPane.showMessageDialog(null, msg, "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    String msg = "Erro de solicitação!";
+                    JOptionPane.showMessageDialog(null, msg, "INFORMATIVO", JOptionPane.ERROR_MESSAGE);
+                }
+
+                formatarCamposEmprestimo();
+                livrosEmprestados();
+
+                ps.close();
+                conn.close();
+
+            } catch (Exception e) {
+                Logger.getLogger(Conexao.class
+                        .getName()).log(Level.SEVERE, null, e);
+            }
+        }
+    }
+
+    private void livrosEmprestados() {
+        formatarTabelaEmp();
+        try {
+            Connection conn = Conexao.getConnection();
+            String command = "SELECT * FROM EMPRESTIMO "
+                    + " WHERE CPF_EMPRE = ?"
+                    + " ORDER BY COD_UNI_EMPRE";
+
+            PreparedStatement ps = conn.prepareStatement(command);
+            ps.setString(1, this.cpf);
+
+            ResultSet rs = ps.executeQuery();
+
+            DefaultTableModel dtm = (DefaultTableModel) tblLivrosEmpres.getModel();
+
+            while (rs.next()) {
+                String[] linhaLivro = new String[]{
+                    rs.getString("CPF_EMPRE"),
+                    rs.getString("COD_UNI_EMPRE"),
+                    rs.getString("DATA_EMPRE"),
+                    rs.getString("DATA_DEV")
+                };
+                dtm.addRow(linhaLivro);
+            }
 
             rs.close();
             ps.close();
@@ -643,22 +991,37 @@ public class Biblioteca extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbTipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCateg;
-    private javax.swing.JLabel lblQtdEmp;
     private javax.swing.JLabel lblValor;
     private javax.swing.JPanel painelBusca;
     private javax.swing.JPanel painelEmprestimo;
     private javax.swing.JTable tblLivros;
+    private javax.swing.JTable tblLivrosEmpres;
+    private javax.swing.JTextField txtCPF;
+    private javax.swing.JTextField txtCodLivro;
+    private javax.swing.JFormattedTextField txtDataDevo;
+    private javax.swing.JFormattedTextField txtDataEmpre;
+    private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

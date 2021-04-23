@@ -9,7 +9,6 @@ import br.ifrn.edu.conexao.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -201,19 +200,19 @@ public class Login extends javax.swing.JFrame {
             try {
                 conn = Conexao.getConnection();
 
-                String comando = "SELECT * FROM CADASTRO";
+                String comando = "SELECT * FROM LEITOR";
 
                 PreparedStatement ps = conn.prepareStatement(comando);
 
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
-                    if (rs.getString("EMAIL_CAD").equals(email)
-                            && rs.getString("SENHA_CAD").equals(senha)) {
+                    if (rs.getString("EMAIL").equals(email)
+                            && rs.getString("SENHA").equals(senha)) {
                         
-                        String cpfR = rs.getString("CPF_CAD");
-                        String emailR = rs.getString("EMAIL_CAD");
-                        String senhaR = rs.getString("SENHA_CAD");
+                        String cpfR = rs.getString("CPF");
+                        String emailR = rs.getString("EMAIL");
+                        String senhaR = rs.getString("SENHA");
                         
                         java.awt.EventQueue.invokeLater(new Runnable() {
                             public void run() {

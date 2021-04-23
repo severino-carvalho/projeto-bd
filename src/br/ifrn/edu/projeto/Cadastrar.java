@@ -8,7 +8,6 @@ package br.ifrn.edu.projeto;
 import br.ifrn.edu.conexao.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -200,10 +199,10 @@ public class Cadastrar extends javax.swing.JFrame {
         String senha = new String(txtSenha.getPassword());
         String confirmar = new String(txtConfirmar.getPassword());
 
-        addLeitor(nome, cpf, email, senha, confirmar);
+        addLeitor(cpf, email, senha, confirmar, nome);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void addLeitor(String nome, String cpf, String email, String senha, String confirmar) {
+    private void addLeitor(String cpf, String email, String senha, String confirmar, String nome) {
         if (nome.trim().isEmpty()
                 || cpf.trim().isEmpty()
                 || email.trim().isEmpty()
@@ -235,8 +234,6 @@ public class Cadastrar extends javax.swing.JFrame {
                     ps.close();
                     conn.close();
 
-                    addCadastro(cpf, email, senha);
-
                 } else {
                     JOptionPane.showMessageDialog(null, "Senhas divergentes!", "ERROR!", JOptionPane.ERROR_MESSAGE);
                 }
@@ -244,29 +241,6 @@ public class Cadastrar extends javax.swing.JFrame {
                 Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
             }
         }
-    }
-
-    private void addCadastro(String cpf, String email, String senha) {
-        Connection conn = null;
-        try {
-            conn = Conexao.getConnection();
-
-            String command = "INSERT INTO CADASTRO VALUES (?, ?, ?)";
-
-            PreparedStatement ps = conn.prepareStatement(command);
-            ps.setString(1, cpf);
-            ps.setString(2, email);
-            ps.setString(3, senha);
-
-            ps.executeUpdate();
-
-            ps.close();
-            conn.close();
-
-        } catch (Exception e) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
-        }
-
     }
 
     /**
