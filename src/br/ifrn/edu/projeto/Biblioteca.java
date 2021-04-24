@@ -6,6 +6,7 @@
 package br.ifrn.edu.projeto;
 
 import br.ifrn.edu.conexao.Conexao;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -566,53 +567,53 @@ public class Biblioteca extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch (cbTipo.getSelectedIndex()) {
             case 1:
-            if (!txtValor.getText().trim().isEmpty()) {
-                int cod = Integer.parseInt(txtValor.getText());
+                if (!txtValor.getText().trim().isEmpty()) {
+                    int cod = Integer.parseInt(txtValor.getText());
 
-                codLivros(cod);
-            } else {
-                JOptionPane.showMessageDialog(
-                    null,
-                    "Campo código sem valor!",
-                    "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
-            }
-            break;
+                    codLivros(cod);
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Campo código sem valor!",
+                            "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+                break;
             case 2:
-            if (!txtValor.getText().trim().isEmpty()) {
-                String titulo = txtValor.getText();
+                if (!txtValor.getText().trim().isEmpty()) {
+                    String titulo = txtValor.getText();
 
-                tituloLivros(titulo);
-            } else {
-                JOptionPane.showMessageDialog(
-                    null,
-                    "Campo código sem valor!",
-                    "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
-            }
-            break;
+                    tituloLivros(titulo);
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Campo código sem valor!",
+                            "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+                break;
             case 3:
-            if (!txtValor.getText().trim().isEmpty()) {
-                String editora = txtValor.getText();
-                editoraLivros(editora);
-            } else {
-                JOptionPane.showMessageDialog(
-                    null,
-                    "Campo código sem valor!",
-                    "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
-            }
-            break;
+                if (!txtValor.getText().trim().isEmpty()) {
+                    String editora = txtValor.getText();
+                    editoraLivros(editora);
+                } else {
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Campo código sem valor!",
+                            "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+                break;
             case 4:
-            if (cbCateg.getSelectedIndex() != 0) {
-                String categoria = cbCateg.getSelectedItem() + "";
-                categoriaLivros(categoria);
-            } else {
-                todosLivros();
-            }
-            break;
+                if (cbCateg.getSelectedIndex() != 0) {
+                    String categoria = cbCateg.getSelectedItem() + "";
+                    categoriaLivros(categoria);
+                } else {
+                    todosLivros();
+                }
+                break;
             default:
-            break;
+                break;
         }
     }//GEN-LAST:event_btnBuscaActionPerformed
 
@@ -674,14 +675,14 @@ public class Biblioteca extends javax.swing.JFrame {
                             "Sucesso",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
-                
+
                 txtCodLivroDev.setText("");
                 livrosEmprestados();
 
                 ps.close();
                 conn.close();
 
-            } catch (Exception e) {
+            } catch (SQLException | HeadlessException e) {
                 Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
             }
         }
@@ -760,8 +761,13 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
+        } catch (SQLException e) {
+            Logger.getLogger(Conexao.class
+                    .getName()).log(Level.SEVERE, null, e);
+
         } catch (Exception e) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Conexao.class
+                    .getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -796,7 +802,9 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
-        } catch (SQLException || SQLException e) {
+        } catch (SQLException e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
     }
@@ -832,6 +840,8 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
+        } catch (SQLException e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -868,6 +878,8 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
+        } catch (SQLException e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -904,6 +916,8 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
+        } catch (SQLException e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -932,9 +946,10 @@ public class Biblioteca extends javax.swing.JFrame {
                 ps.close();
                 conn.close();
                 return false;
+
             }
 
-        } catch (Exception e) {
+        } catch (SQLException | HeadlessException e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
         return false;
@@ -961,9 +976,10 @@ public class Biblioteca extends javax.swing.JFrame {
                 ps.close();
                 conn.close();
                 return false;
+
             }
 
-        } catch (Exception e) {
+        } catch (SQLException | HeadlessException e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
         return false;
@@ -999,9 +1015,8 @@ public class Biblioteca extends javax.swing.JFrame {
                 ps.close();
                 conn.close();
 
-            } catch (Exception e) {
-                Logger.getLogger(Conexao.class
-                        .getName()).log(Level.SEVERE, null, e);
+            } catch (SQLException | HeadlessException e) {
+                Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
             }
         }
     }
@@ -1034,6 +1049,8 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
+        } catch (SQLException e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -1053,17 +1070,16 @@ public class Biblioteca extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Biblioteca.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         }
+        //</editor-fold>
+        /* Create and display the form */
         //</editor-fold>
 
         /* Create and display the form */
