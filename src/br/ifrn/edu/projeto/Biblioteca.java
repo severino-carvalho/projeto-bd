@@ -6,11 +6,9 @@
 package br.ifrn.edu.projeto;
 
 import br.ifrn.edu.conexao.Conexao;
-import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -107,7 +105,7 @@ public class Biblioteca extends javax.swing.JFrame {
         tblLivrosEmpres = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         txtCodLivroDev = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnDevo = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
@@ -115,13 +113,13 @@ public class Biblioteca extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         txtCodLivro = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        txtDataDevo = new javax.swing.JFormattedTextField();
         txtDataEmpre = new javax.swing.JFormattedTextField();
+        txtDataDevo = new javax.swing.JFormattedTextField();
         jPanel10 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
-        txtCPF3 = new javax.swing.JTextField();
+        txtCPF = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        txtSenha3 = new javax.swing.JPasswordField();
+        txtSenha = new javax.swing.JPasswordField();
         jLabel29 = new javax.swing.JLabel();
         btnNovoEmp = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -199,30 +197,27 @@ public class Biblioteca extends javax.swing.JFrame {
             .addGroup(painelBuscaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
-                        .addGap(0, 50, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(painelBuscaLayout.createSequentialGroup()
                         .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
+                            .addGroup(painelBuscaLayout.createSequentialGroup()
                                 .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelBuscaLayout.createSequentialGroup()
-                                        .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(lblValor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(painelBuscaLayout.createSequentialGroup()
-                                        .addComponent(lblCateg, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbCateg, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(36, 36, 36))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBuscaLayout.createSequentialGroup()
-                                .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(103, 103, 103))))))
+                                    .addComponent(jLabel2)
+                                    .addComponent(lblValor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(painelBuscaLayout.createSequentialGroup()
+                                .addComponent(lblCateg, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbCateg, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 4, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(painelBuscaLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelBuscaLayout.setVerticalGroup(
             painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,12 +236,12 @@ public class Biblioteca extends javax.swing.JFrame {
                 .addGroup(painelBuscaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbCateg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCateg))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnBusca)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
-        jPanel1.add(painelBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 12, 340, 210));
+        jPanel1.add(painelBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 270, 230));
 
         painelEmprestimo.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         painelEmprestimo.setPreferredSize(new java.awt.Dimension(400, 285));
@@ -275,10 +270,10 @@ public class Biblioteca extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("Código do livro:");
 
-        jButton1.setText("Devolver");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDevo.setText("Devolver");
+        btnDevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDevoActionPerformed(evt);
             }
         });
 
@@ -290,17 +285,14 @@ public class Biblioteca extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCodLivroDev)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(btnDevo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,7 +305,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCodLivroDev, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnDevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -337,13 +329,13 @@ public class Biblioteca extends javax.swing.JFrame {
         jLabel26.setText("Informações do Empréstimo:");
 
         try {
-            txtDataDevo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+            txtDataEmpre.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            txtDataEmpre.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
+            txtDataDevo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -393,8 +385,8 @@ public class Biblioteca extends javax.swing.JFrame {
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel27.setText("CPF:");
 
-        txtCPF3.setEditable(false);
-        txtCPF3.setPreferredSize(new java.awt.Dimension(150, 26));
+        txtCPF.setEditable(false);
+        txtCPF.setPreferredSize(new java.awt.Dimension(150, 26));
 
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel28.setText("Senha");
@@ -417,10 +409,10 @@ public class Biblioteca extends javax.swing.JFrame {
                     .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSenha3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(txtCPF3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -431,11 +423,11 @@ public class Biblioteca extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCPF3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtCPF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSenha3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -450,16 +442,17 @@ public class Biblioteca extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(172, 172, 172))
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(btnNovoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(btnNovoEmp, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,7 +461,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNovoEmp)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -478,14 +471,14 @@ public class Biblioteca extends javax.swing.JFrame {
         painelEmprestimoLayout.setHorizontalGroup(
             painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelEmprestimoLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelEmprestimoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelEmprestimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelEmprestimoLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         painelEmprestimoLayout.setVerticalGroup(
@@ -500,11 +493,21 @@ public class Biblioteca extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.add(painelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 12, 880, 430));
+        jPanel1.add(painelEmprestimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(307, 12, 940, 430));
 
         jMenu3.setText("Sistema");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
 
-        jMenu2.setText("Atualizar");
+        jMenu2.setText("Dados");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
         jMenu3.add(jMenu2);
 
         jMenu1.setText("Sair");
@@ -526,7 +529,7 @@ public class Biblioteca extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,15 +556,39 @@ public class Biblioteca extends javax.swing.JFrame {
 
     private void btnNovoEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoEmpActionPerformed
         // TODO add your handling code here:
+        try {
+            if (!(txtCPF.getText().trim().isEmpty()
+                    || txtCodLivro.getText().trim().isEmpty()
+                    || txtDataDevo.getText().contains("  ")
+                    || txtDataEmpre.getText().contains("  ")
+                    || txtSenha.getPassword().equals(""))) {
+
+                //String cpf, String email, String senha, int cod_unico,String dataEmprestimo, String dataDevolucao 
+                String cpfEmp = txtCPF.getText();
+                String emailEmp = this.email;
+                String senhaEmp = new String(txtSenha.getPassword());
+                int cod_uni_emp = Integer.parseInt(txtCodLivro.getText());
+                String dataEmp = txtDataEmpre.getText();
+                String dataDevEmp = txtDataEmpre.getText();
+
+                emprestar(cpfEmp, emailEmp, senhaEmp, cod_uni_emp, dataEmp, dataDevEmp);
+            }
+        } catch (NumberFormatException e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        }
     }//GEN-LAST:event_btnNovoEmpActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnDevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDevoActionPerformed
         // TODO add your handling code here:
-        String cpf_dev = this.cpf;
-        int cod_uni_dev = Integer.parseInt(txtCodLivroDev.getText());
+        try {
+            String cpf_dev = this.cpf;
+            int cod_uni_dev = Integer.parseInt(txtCodLivroDev.getText());
 
-        devolucao(cpf_dev, cod_uni_dev);
-    }//GEN-LAST:event_jButton1ActionPerformed
+            devolucao(cpf_dev, cod_uni_dev);
+        } catch (NumberFormatException e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_btnDevoActionPerformed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
         // TODO add your handling code here:
@@ -644,6 +671,26 @@ public class Biblioteca extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tblLivrosKeyPressed
 
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        // TODO add your handling code here:
+
+        try {
+            String cpfP = this.cpf;
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Perfil(cpfP).setVisible(true);
+                }
+            });
+        } catch (Exception e) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3MouseClicked
+
     private void devolucao(String cpf, int cod_unico) {
         if (JOptionPane.showConfirmDialog(
                 null,
@@ -682,7 +729,7 @@ public class Biblioteca extends javax.swing.JFrame {
                 ps.close();
                 conn.close();
 
-            } catch (SQLException | HeadlessException e) {
+            } catch (Exception e) {
                 Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
             }
         }
@@ -761,13 +808,8 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
-        } catch (SQLException e) {
-            Logger.getLogger(Conexao.class
-                    .getName()).log(Level.SEVERE, null, e);
-
         } catch (Exception e) {
-            Logger.getLogger(Conexao.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -802,8 +844,6 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
-        } catch (SQLException e) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -840,8 +880,6 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
-        } catch (SQLException e) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -878,8 +916,6 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
-        } catch (SQLException e) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -916,8 +952,6 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
-        } catch (SQLException e) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -946,10 +980,9 @@ public class Biblioteca extends javax.swing.JFrame {
                 ps.close();
                 conn.close();
                 return false;
-
             }
 
-        } catch (SQLException | HeadlessException e) {
+        } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
         return false;
@@ -976,10 +1009,9 @@ public class Biblioteca extends javax.swing.JFrame {
                 ps.close();
                 conn.close();
                 return false;
-
             }
 
-        } catch (SQLException | HeadlessException e) {
+        } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
         return false;
@@ -1015,8 +1047,9 @@ public class Biblioteca extends javax.swing.JFrame {
                 ps.close();
                 conn.close();
 
-            } catch (SQLException | HeadlessException e) {
-                Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
+            } catch (Exception e) {
+                Logger.getLogger(Conexao.class
+                        .getName()).log(Level.SEVERE, null, e);
             }
         }
     }
@@ -1049,8 +1082,6 @@ public class Biblioteca extends javax.swing.JFrame {
             ps.close();
             conn.close();
 
-        } catch (SQLException e) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         } catch (Exception e) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -1070,16 +1101,17 @@ public class Biblioteca extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Biblioteca.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Biblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        /* Create and display the form */
         //</editor-fold>
 
         /* Create and display the form */
@@ -1087,21 +1119,13 @@ public class Biblioteca extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBusca;
+    private javax.swing.JButton btnDevo;
     private javax.swing.JButton btnNovoEmp;
     private javax.swing.JComboBox<String> cbCateg;
     private javax.swing.JComboBox<String> cbTipo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -1111,8 +1135,6 @@ public class Biblioteca extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1120,9 +1142,6 @@ public class Biblioteca extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1134,18 +1153,11 @@ public class Biblioteca extends javax.swing.JFrame {
     private javax.swing.JTable tblLivros;
     private javax.swing.JTable tblLivrosEmpres;
     private javax.swing.JTextField txtCPF;
-    private javax.swing.JTextField txtCPF1;
-    private javax.swing.JTextField txtCPF3;
     private javax.swing.JTextField txtCodLivro;
-    private javax.swing.JTextField txtCodLivro1;
     private javax.swing.JTextField txtCodLivroDev;
     private javax.swing.JFormattedTextField txtDataDevo;
-    private javax.swing.JFormattedTextField txtDataDevo1;
     private javax.swing.JFormattedTextField txtDataEmpre;
-    private javax.swing.JFormattedTextField txtDataEmpre1;
     private javax.swing.JPasswordField txtSenha;
-    private javax.swing.JPasswordField txtSenha1;
-    private javax.swing.JPasswordField txtSenha3;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }
